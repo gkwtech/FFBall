@@ -1,0 +1,4 @@
+<% @leagues.each do |league| %>
+<%= league.name %>
+<% end %>
+<%= link_to "Create a League", new_league_path, :class => "index-create-league" %>
