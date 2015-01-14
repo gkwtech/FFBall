@@ -1,9 +1,9 @@
 require "rails_helper"
 
-feature "user creates league" do
+feature "user creates team" do
   scenario "and receives confirmation when correctly filling out forms" do
-    initial_league_count = League.count
     user = FactoryGirl.create(:user)
+    team = FactoryGirl.create(:team)
     league = FactoryGirl.create(:league)
 
     visit new_user_session_path
@@ -13,17 +13,17 @@ feature "user creates league" do
 
     click_button "Log in"
 
-    visit new_league_path
-    fill_in "Name", with: league.name
-    fill_in "Password", with: league.password
-    select league.member_amount, from: "league[member_amount]"
-    click_button "Create League"
+    visit league_path(league)
+    click_button "Add Team"
+    fill_in "Name", with: team.name
+    click_button "Create Team"
 
-    expect(page).to have_content("League created")
+    expect(page).to have_content("Team created")
   end
 
   scenario "and receives errors when incorrectly filling out forms" do
     user = FactoryGirl.create(:user)
+    team = FactoryGirl.create(:team)
     league = FactoryGirl.create(:league)
 
     visit new_user_session_path
@@ -33,14 +33,17 @@ feature "user creates league" do
 
     click_button "Log in"
 
-    visit new_league_path
-    click_button "Create League"
+    visit league_path(league)
+    click_button "Add Team"
+    click_button "Create Team"
 
     expect(page).to have_content("Name can't be blank")
   end
 
   scenario "and is given an error if not signed in" do
-    visit new_league_path
+    team = FactoryGirl.create(:team)
+    league = FactoryGirl.create(:league)
+    visit new_league_team_path(league, team)
 
     expect(page).to have_content("Must be signed in to do that.")
   end
