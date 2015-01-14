@@ -17,7 +17,7 @@
 
   As an authenticated user
   I want to create a team
-  So that I can put all my favorite players on it
+  So that I can join the league
 ###Acceptance Criteria
 * If I'm signed in and have been invited to a league, I have an option to create a team
 * If I'm not signed in, I cannot create a team
@@ -25,3 +25,57 @@
 * I am able to change the team name after creation
 * I am able to delete the team after creation,
   only if its league has less than the specified amount of members
+
+
+-- for later: --
+  As an authenticated user
+  I want to draft players
+  So that I can populate my team
+###Acceptance Criteria
+* If I'm signed in, I can join the draft
+* If I'm not signed in, I can't join the draft
+* I am able to nominate the next player
+* I am able to bid on that player
+* That player is drafted by a team when the bidding clock runs out
+* A team cannot bid over their team's max bid value
+* A team cannot bid on players once their roster is full
+
+  As an authenticated user
+  I want to add free agents to my team
+  So that I can make my team better
+###Acceptance Criteria
+* If I'm signed in, there is an option to view free agents for a league
+* If I'm not signed in, I cannot view a league's free agents
+* Free agents are comprised of all available players who do not belong to a team
+* Free agents follow the league's waivier policies
+* I am able to search free agents by first or last name
+* I am able to filter free agents by position
+* I am able to sort free agents by statistical category
+* I am able to filter statistical categories by various scopes and conditions
+* When adding a player, I must have an open roster spot for that player,
+  otherwise, I must drop a player who is currently on my team
+* The player I drop follows the league's waivier policies
+
+  As a league commissioner
+  I want to set the league settings
+  So that I can customize how my league operates
+###Acceptance Criteria
+* If I'm signed in as the league commissioner,
+  there is an option to change the league settings
+* I am able to change stat scoring
+* I am able to change waivier policies
+* I am able to change playoff format
+* I am able to change league format
+* I am able to change league attributes (dynasty, amount of keepers, etc)
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,17 +1,331 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- *= require foundation_and_overrides
+body {
+  margin: 0;
+  font-family: 'Cutive Mono', monospace;
+}
 
- */
+.content-container {
+  background: yellow;
+  width: 85%;
+float: right;
+display: inline-block;
+position: absolute;
+right: 0;
+height: 100%;
+background: -webkit-linear-gradient(90deg, #F1F6F2 10%, #F3F3F3 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #F1F6F2 10%, #F3F3F3 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #F1F6F2 10%, #F3F3F3 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, #F1F6F2 10%, #F3F3F3 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #F1F6F2 10%, #F3F3F3 90%); /* W3C */
+}
+
+.sidenav {
+background: rgb(209, 225, 212);
+width: 15%;
+display: inline-block;
+float: left;
+height: 100%;
+position: absolute;
+border-right: 2px solid rgb(154, 179, 159);
+z-index: 1;
+}
+
+.sidenav-logo {
+background: rgb(209, 225, 212);
+padding: 20%;
+width: 60%;
+margin: 0;
+}
+
+#sidenav-title {
+background: rgb(209, 225, 212);
+width: 92%;
+display: block;
+text-align: center;
+padding: 4%;
+margin: 0;
+font-size: 1.4em;
+text-decoration: none;
+color: rgb(100, 117, 103);
+margin-top: 4%;
+}
+
+.sidenav-sign-out {
+border-top: 2px solid rgb(154, 179, 159);
+border-bottom: 2px solid rgb(154, 179, 159);
+background: rgb(241, 246, 242);
+color: rgb(106, 117, 103);
+border-right: 2px solid rgb(154, 179, 159);
+width: 92%;
+display: block;
+text-align: center;
+padding: 4%;
+text-decoration: none;
+margin-top: 4%;
+}
+
+.sidenav-sign-up {
+background: rgb(197, 216, 200);
+width: 92%;
+display: block;
+text-align: center;
+padding: 4%;
+text-decoration: none;
+color: rgb(100, 117, 113);
+margin-top: 4%;
+box-shadow: inset 1px 1px 1px rgb(195, 214, 199), inset 0px -1px 1px rgb(136, 167, 141);
+}
+
+.sidenav-sign-in {
+background: rgb(197, 216, 200);
+display: block;
+width: 92%;
+text-align: center;
+text-decoration: none;
+color: rgb(100, 117, 113);
+padding: 4%;
+margin-top: 4%;
+box-shadow: inset 1px 1px 1px rgb(195, 214, 199), inset 0px -1px 1px rgb(136, 167, 141);
+}
+
+.links-container {
+position: absolute;
+right: 1%;
+bottom: 1%;
+}
+
+.login-form-container {
+margin: 15%;
+width: 68%;
+position: absolute;
+left: 0;
+top: 0;
+padding: 1%;
+background: white;
+box-shadow: inset 1px 1px 1px rgb(215, 224, 220), inset -1px -1px 1px rgb(223, 230, 227);
+}
+
+.login-title {
+text-align: center;
+padding: 1%;
+}
+
+.login-form {
+  background: turquoise;
+}
+
+.login-email {
+width: 27%;
+display: inline-block;
+margin: 0;
+padding: 1%;
+text-align: center;
+}
+
+.login-email-field {
+width: 69%;
+display: inline-block;
+float: right;
+margin: 0;
+padding: 1%;
+border: none;
+background: rgb(246, 246, 221);
+font-size: 1em;
+}
+
+.login-password {
+width: 27%;
+display: inline-block;
+margin: 0;
+padding: 1%;
+text-align: center;
+}
+
+.login-password-field {
+width: 69%;
+display: inline-block;
+float: right;
+margin: 0;
+padding: 1%;
+border: none;
+background: rgb(246, 246, 221);
+font-size: 1em;
+}
+
+.login-remember-me-checkbox {
+  background: violet;
+}
+
+.login-remember-me {
+}
+
+.login-submit {
+width: 100%;
+margin: 0;
+padding: 2%;
+display: inline-block;
+padding: 1%;
+font-family: 'Cutive Mono', monospace;
+-webkit-appearance: none;
+white-space: none;
+font-size: 1em;
+}
+
+.links-login {
+  background: orange;
+}
+
+.links-signup {
+padding: 2%;
+display: inline-block;
+text-decoration: none;
+color: rgb(100, 117, 103);
+border-radius: 1px;
+background: rgb(197, 216, 200);
+box-shadow: inset 1px 1px 1px rgb(195, 214, 199), inset 0px -1px 1px rgb(136, 167, 141);
+}
+
+.links-forgot-password {
+padding: 2%;
+display: inline-block;
+text-decoration: none;
+color: rgb(100, 117, 103);
+border-radius: 1px;
+background: rgb(197, 216, 200);
+box-shadow: inset 1px 1px 1px rgb(195, 214, 199), inset 0px -1px 1px rgb(136, 167, 141);
+}
+
+.links-new-confirmation {
+  background: orange;
+}
+
+.links-new-unlock {
+  background: orange;
+}
+
+.links-omniauth {
+  background: orange;
+}
+
+.svg-icon:hover, .league-add-team-button:hover, .league-add-team:hover, .sidenav-sign-out:hover, .index-create-league:hover, .links-signup:hover, .login-submit:hover, .links-forgot-password:hover, #sidenav-title:hover, .sidenav-sign-up:hover, .sidenav-sign-in:hover {
+color: brown;
+cursor: pointer;
+}
+
+.login-email-container {
+  display: inline-block;
+width: 100%;
+border: 2px solid rgb(229, 234, 232);
+}
+
+.login-password-container {
+  width: 100%;
+  display: inline-block;
+border: 2px solid rgb(229, 234, 232);
+margin-top: 1%;
+margin-bottom: 1%;
+}
+
+.login-remember-me-container {
+float: right;
+margin: 1%;
+}
+
+.login-submit-container {
+  background: orange;
+}
+
+.index-create-league {
+background: rgb(209, 225, 212);
+padding: 1%;
+width: 20%;
+display: inline-block;
+text-align: center;
+position: absolute;
+bottom: 0;
+right: 0;
+margin-right: 37.5%;
+color: rgb(114, 117, 103);
+text-decoration: none;
+margin-bottom: 1%;
+}
+
+.new_league {
+  width: 50%;
+margin: 10% 25% 0% 25%;
+}
+
+.form-dropdown {
+width: 96%;
+text-align: center;
+margin: 2%;
+padding: 1% 0% 1% 34%;
+font: inherit;
+background: white;
+text-align: center;
+}
+
+.flash {
+  width: 50%;
+text-align: center;
+background: rgba(0, 255, 52, 0.09);
+border: 2px solid rgb(154, 179, 159);
+padding: 1%;
+margin-left: 25%;
+margin-top: 1%;
+box-shadow: 0px 1px 4px rgba(0, 128, 0, 0.29);
+color: rgb(106, 117, 103);
+position: absolute;
+}
+
+.league-name {
+width: 96%;
+padding: 2%;
+background: white;
+font-weight: 800;
+font-size: x-large;
+}
+
+.svg-icon {
+display: inline-block;
+margin-left: 3%;
+margin-top: 3%;
+float: left;
+width: 1.5em;
+height: 1.5em;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #037318;
+}
+
+.svg-icon circle {
+  stroke: #4691f6;
+  stroke-width: 1;
+}
+
+.league-add-team-button {
+height: 100%;
+font-size: 1em;
+font-family: 'Cutive Mono';
+display: inline-block;
+margin: 0;
+padding: 0;
+margin-top: 3%;
+margin-bottom: 3%;
+margin-left: 3%;
+padding: 3%;
+color: rgb(0, 0, 0);
+-webkit-appearance: none;
+background: none;
+border: none;
+}
+
+.league-add-team {
+width: 10%;
+border: 2px solid rgb(154, 179, 159);
+border-radius: 1px;
+margin: 1%;
+background: rgb(255, 255, 255);
+}
