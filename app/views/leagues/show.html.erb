@@ -1,0 +1,6 @@
+<%= @league.name %>
+<%= button_to "Add Team",
+              new_league_team_path(@league),
+              method: :get,
+              id: @league.id
+%>

@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :players, only: [:index, :show]
-  resources :leagues, only: [:new]
+  resources :leagues, only: [:new, :create, :show] do
+    resources :teams, only: [:new, :create, :show, :index]
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

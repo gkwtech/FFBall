@@ -1,0 +1,6 @@
+<%= @errors %>
+<%= form_for [@league, @team] do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+<%= f.submit "Create Team" %>
+<% end %>
