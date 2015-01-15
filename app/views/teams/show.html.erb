@@ -1,2 +1,74 @@
-<%= link_to "League Home", league_path(@league) %>
+<div class="league-name">
+<%= @league.name %>
+</div>
+<div class="league-navbar">
+<%= link_to "League Home", league_path(@league), class: "league-navbar-element" %>
+<a href="#" class="league-navbar-element">Free Agents</a>
+<a href="#" class="league-navbar-element">League History</a>
+<a href="#" class="league-navbar-element">Schedule</a>
+<a href="#" class="league-navbar-element">League Settings</a>
+<a href="#" class="league-navbar-element">Team Settings</a>
+</div>
+<div class="team-container">
+<div class="team-name">
 <%= @team.name %>
+</div>
+<div class="team-roster">
+  <div class="team-roster-row">
+    <div class="team-roster-row-position">
+    Position
+    </div>
+    <div class="team-roster-row-name">
+    Name
+    </div>
+  </div>
+  <div class="team-roster-row">
+    <div class="team-roster-row-position">
+    QB
+    </div>
+    <div class="team-roster-row-name">
+    Empty
+    </div>
+  </div>
+  <div class="team-roster-row">
+    <div class="team-roster-row-position">
+    RB
+    </div>
+    <div class="team-roster-row-name">
+    Empty
+    </div>
+  </div>
+  <div class="team-roster-row">
+    <div class="team-roster-row-position">
+    RB
+    </div>
+    <div class="team-roster-row-name">
+    Name
+    </div>
+  </div>
+  <div class="team-roster-row">
+    <div class="team-roster-row-position">
+    WR
+    </div>
+    <div class="team-roster-row-name">
+    Name
+    </div>
+  </div>
+  <div class="team-roster-row">
+    <div class="team-roster-row-position">
+    WR
+    </div>
+    <div class="team-roster-row-name">
+    Name
+    </div>
+  </div>
+  <div class="team-roster-row">
+    <div class="team-roster-row-position">
+    TE
+    </div>
+    <div class="team-roster-row-name">
+    Name
+    </div>
+  </div>
+</div>
+</div>

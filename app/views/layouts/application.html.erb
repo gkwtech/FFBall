@@ -9,13 +9,13 @@
 <div class="sidenav">
 <img src="/gorilla-100.png" class="sidenav-logo">
 <a href="/" id="sidenav-title">FantasyFooball</a>
-<%- if current_user -%>
+<% if current_user %>
 <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => "sidenav-sign-out" %>
 <%= link_to "Create a League", new_league_path, :class => "sidenav-sign-out" %>
-<%- else -%>
+<% else %>
 <%= link_to 'Sign Up', new_user_registration_path, :class => "sidenav-sign-up" %>
   <%= link_to 'Sign In', new_user_session_path, :class => "sidenav-sign-in" %>
-<%- end -%>
+<% end %>
 </div>
 <div class="content-container">
   <%- flash.each do |key, value| -%>
@@ -27,5 +27,11 @@
   <%= yield %>
   <%= yield :extra_footer %>
   </div>
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_tag do %>
+    $(function(){
+      $(document).application();
+    });
+  <% end %>
 </body>
 </html>

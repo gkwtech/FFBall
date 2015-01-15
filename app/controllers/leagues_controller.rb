@@ -18,7 +18,7 @@ class LeaguesController < ApplicationController
   end
 
   def index
-    @leagues = League.all
+    @teams = current_user.teams
   end
 
   def show

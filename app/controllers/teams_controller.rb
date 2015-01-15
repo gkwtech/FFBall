@@ -3,6 +3,7 @@ class TeamsController < ApplicationController
 
   def new
     @team = Team.new
+    binding.pry
     @league = League.find(params[:league_id])
   end
 
