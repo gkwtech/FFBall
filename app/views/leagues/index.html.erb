@@ -1,4 +1,19 @@
-<% @leagues.each do |league| %>
-<%= league.name %>
+<div class="user-home-container">
+<div class="user-home-title">
+My Teams and Leagues
+</div>
+<% @teams.each do |team| %>
+<div class="user-home-row">
+<div class="user-home-row-team-name">
+<%= team.name %>
+</div>
+<div class="user-home-row-team-record">
+<%= team.record %>
+</div>
+<div class="user-home-row-league-members-amount">
+<%= team.league.member_amount %>
+</div>
+</div>
 <% end %>
+</div>
 <%= link_to "Create a League", new_league_path, :class => "index-create-league" %>
