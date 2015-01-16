@@ -1,5 +1,11 @@
 #FFBall
-[![Build Status](https://travis-ci.org/tylyon/ffball.svg?branch=master)](https://travis-ci.org/tylyon/ffball) [![Code Climate](https://codeclimate.com/github/tylyon/ffball.png)](https://codeclimate.com/github/tylyon/ffball) [![Coverage Status](https://coveralls.io/repos/tylyon/ffball/badge.png)](https://coveralls.io/r/tylyon/ffball)
+
+[![Build Status](https://travis-ci.org/tylyon/FFBall.svg)](https://travis-ci.org/tylyon/FFBall)
+
+[![Code Climate](https://codeclimate.com/github/tylyon/FFBall/gpa.svg)](https://codeclimate.com/github/tylyon/FFBall)
+
+[![Coverage Status](https://coveralls.io/repos/tylyon/FFBall/badge.svg)](https://coveralls.io/r/tylyon/FFBall)
+
 ##User Stories
   As an authenticated user
   I want to create a league
