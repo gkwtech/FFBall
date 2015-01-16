@@ -8,6 +8,7 @@ class CreatePlayers < ActiveRecord::Migration
       t.integer :height
       t.integer :weight
       t.integer :years_pro
+      t.integer :team_id
 
       t.timestamps null: false
     end

@@ -22,4 +22,15 @@ FactoryGirl.define do
     password "password"
     member_amount 14
   end
+
+  factory :player do
+    first_name "first"
+    last_name "last"
+    position "QB"
+    gsis_id 1
+    height 8
+    weight 8
+    years_pro 2
+  end
+
 end

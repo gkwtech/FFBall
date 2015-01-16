@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   root 'leagues#index'
   devise_for :users
 
-  resources :players, only: [:index, :show]
+  resources :players, only: [:show]
   resources :leagues, only: [:new, :create, :show] do
     resources :teams, only: [:new, :create, :show, :index]
+    resources :drafts, only: [:index, :show, :new, :create]
+    resources :players, only: [:index, :update]
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

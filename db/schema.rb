@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150113225002) do
+ActiveRecord::Schema.define(version: 20150116140330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "drafts", force: :cascade do |t|
+    t.datetime "year"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "leagues", force: :cascade do |t|
     t.string   "name",            null: false
@@ -25,6 +32,13 @@ ActiveRecord::Schema.define(version: 20150113225002) do
     t.string   "member_amount",   null: false
   end
 
+  create_table "picks", force: :cascade do |t|
+    t.integer  "number"
+    t.integer  "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "players", force: :cascade do |t|
     t.string   "first_name", null: false
     t.string   "last_name",  null: false
@@ -33,6 +47,22 @@ ActiveRecord::Schema.define(version: 20150113225002) do
     t.integer  "height"
     t.integer  "weight"
     t.integer  "years_pro"
+    t.integer  "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rosters", force: :cascade do |t|
+    t.integer  "player_id",  null: false
+    t.integer  "team_id",    null: false
+    t.string   "status",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rounds", force: :cascade do |t|
+    t.integer  "number"
+    t.time     "length"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
