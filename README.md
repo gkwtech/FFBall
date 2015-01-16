@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/tylyon/FFBall.svg)](https://travis-ci.org/tylyon/FFBall)
 
-[![Code Climate](https://codeclimate.com/github/tylyon/FFBall/gpa.svg)](https://codeclimate.com/github/tylyon/FFBall)
+[![Code Climate](https://codeclimate.com/github/tylyon/FFBall/badges/gpa.svg)](https://codeclimate.com/github/tylyon/FFBall)
 
 [![Coverage Status](https://coveralls.io/repos/tylyon/FFBall/badge.svg)](https://coveralls.io/r/tylyon/FFBall)
 
