@@ -1,0 +1,5 @@
+language: ruby
+rvm:
+  - 2.1.3p242
+before_script:
+  - psql -c 'create database fantasy_football_test;' -U postgres

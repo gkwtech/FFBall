@@ -43,6 +43,9 @@ group :development, :test do
   gem 'json'
 end
 
+group :test do
+  gem 'coveralls', require: false
+end
 
 gem 'rspec-rails', group: [:development, :test]
 gem 'capybara', group: [:development, :test]

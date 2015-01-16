@@ -1,5 +1,5 @@
 #FFBall
-
+[![Build Status](https://travis-ci.org/<YOUR_GITHUB_USERNAME>/<YOUR_REPO_NAME>.svg?branch=master)](https://travis-ci.org/<YOUR_GITHUB_USERNAME>/<YOUR_REPO_NAME>) [![Code Climate](https://codeclimate.com/github/<YOUR_GITHUB_USERNAME>/<YOUR_REPO_NAME>.png)](https://codeclimate.com/github/<YOUR_GITHUB_USERNAME>/<YOUR_REPO_NAME>) [![Coverage Status](https://coveralls.io/repos/<YOUR_GITHUB_USERNAME>/<YOUR_REPO_NAME>/badge.png)](https://coveralls.io/r/<YOUR_GITHUB_USERNAME>/<YOUR_REPO_NAME>)
 ##User Stories
   As an authenticated user
   I want to create a league
@@ -26,6 +26,17 @@
 * I am able to delete the team after creation,
   only if its league has less than the specified amount of members
 
+  As an authenticated user
+  I want to view and add free agents
+  So that I can field a roster
+###Acceptance Criteria
+* If I'm not signed in, I cannot view free agents
+* If I am signed in but not a member of a particular league,
+  then I cannot view that league's free agents
+* If I'm signed in and a member of a league, I can view that league's free agents
+* Each player has the option to add to my team
+* When adding a player, I am brought back to my team page,
+  with that player newly added to my roster
 
 -- for later: --
   As an authenticated user
