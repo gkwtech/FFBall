@@ -25,6 +25,10 @@ class TeamsController < ApplicationController
     @league = League.find(@team.league_id)
   end
 
+  def update
+    binding.pry
+  end
+
   private
 
   def team_params
