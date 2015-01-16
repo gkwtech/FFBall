@@ -18,7 +18,6 @@ feature "user views free agents" do
     click_button "Log in"
 
     visit league_players_path(team.league)
-    save_and_open_page
     click_button "Add Player"
     expect(page).to have_content("#{player.first_name} #{player.last_name} added")
     expect(team.players.count).to eq(initial_players_count + 1)

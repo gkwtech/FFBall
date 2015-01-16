@@ -4,7 +4,12 @@ Rails.application.routes.draw do
 
   resources :players, only: [:show]
   resources :leagues, only: [:new, :create, :show] do
-    resources :teams, only: [:new, :create, :show, :index]
+    resources :teams, only: [:new, :create, :show, :index] do
+      resources :rosters, only: [:new, :create, :show, :index, :update, :destroy]
+      resources :players do
+        post "/drop", to: 'players#drop', as: :drop
+      end
+    end
     resources :drafts, only: [:index, :show, :new, :create]
     resources :players, only: [:index, :update]
   end

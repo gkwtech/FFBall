@@ -13,6 +13,18 @@
 <div class="team-name">
 <%= @team.name %>
 </div>
+<%= @team.players.each do |player| %>
+<%= "#{player.first_name} + #{player.last_name}" %>
+  <%= form_for [@league, @team, @roster] do |f| %>
+    <%= f.label :position %>
+    <%= f.select(:position, %w[QB RB WR TE FLEX DEF BN]) %>
+    <%= hidden_field_tag "team_id", @team.id %>
+    <%= hidden_field_tag "player_id", player.id %>
+    <%= f.submit "Save Lineup" %>
+  <% end %>
+<%= button_to "Drop Player", league_team_player_drop_path(@league, @team, player) %>
+<% end %>
+
 <div class="team-roster">
   <div class="team-roster-row">
     <div class="team-roster-row-position">

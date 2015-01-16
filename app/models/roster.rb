@@ -1,4 +1,5 @@
 class Roster < ActiveRecord::Base
   belongs_to :team
-  has_many :players
+  belongs_to :player
+
 end
