@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150116140330) do
     t.integer  "player_id",  null: false
     t.integer  "team_id",    null: false
     t.string   "status",     null: false
+    t.string   "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -68,14 +69,14 @@ ActiveRecord::Schema.define(version: 20150116140330) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string   "name",                   null: false
-    t.integer  "user_id",                null: false
-    t.integer  "league_id",              null: false
-    t.integer  "wins",       default: 0
-    t.integer  "losses",     default: 0
+    t.string   "name",       null: false
+    t.integer  "user_id",    null: false
+    t.integer  "league_id",  null: false
+    t.integer  "wins"
+    t.integer  "losses"
     t.integer  "ties"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

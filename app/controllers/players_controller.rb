@@ -33,4 +33,17 @@ class PlayersController < ApplicationController
       render :index
     end
   end
+
+  def drop
+    roster = Roster.find_by(player_id: params[:player_id])
+    player = Player.find(params[:player_id])
+    team = Team.find(player.team_id)
+    player.team_id = nil
+    if roster.delete && player.save
+      flash[:notice] = "Player Dropped."
+    else
+      flash[:notice] = "Uh-oh. Something is wrong. Leave feedback or come back later."
+    end
+    redirect_to league_team_path(team.league, team)
+  end
 end

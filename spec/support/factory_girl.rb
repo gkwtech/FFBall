@@ -33,4 +33,10 @@ FactoryGirl.define do
     years_pro 2
   end
 
+  factory :roster do
+    player
+    team
+    status "inactive"
+  end
+
 end
