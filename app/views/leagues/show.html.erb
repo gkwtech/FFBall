@@ -2,6 +2,12 @@
 <%= @league.name %>
 </div>
 <div class="league-navbar">
+<%= link_to "League Home", league_path(@league), class: "league-navbar-element" %>
+<a href="#" class="league-navbar-element">Free Agents</a>
+<a href="#" class="league-navbar-element">League History</a>
+<a href="#" class="league-navbar-element">Schedule</a>
+<a href="#" class="league-navbar-element">League Settings</a>
+<a href="#" class="league-navbar-element">Team Settings</a>
 </div>
 <% if current_user.has_team_in(@league) == false %>
 <form class="league-add-team" method="get" action="/leagues/<%= @league.id %>/teams/new">
@@ -15,3 +21,18 @@
 </form>
 <% end %>
 <%= render partial: "teams/index", locals: { league: @league } %>
+
+<% if (@teams.count == @league.member_amount.to_i) && !@league.has_drafted? %>
+<div class="start-draft-container">
+<div class="start-draft-minimize-button">
+-
+</div>
+Your league is ready to draft.
+<%= link_to "Start Draft", new_league_draft_path(@league), :class => "start-draft-button" %>
+</div>
+<% end %>
+
+<a href="<%= @league.id %>/drafts/new" class="start-draft-button-minimized">
+<img src="/draft-icon.png" style="height: 30px; margin-right: 24px;">
+Start Draft
+</a>

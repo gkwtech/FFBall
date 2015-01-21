@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>FantasyFooball</title>
+  <title>Fooball</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <link href='http://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
+  <%= csrf_meta_tags %>
 </head>
 <body>
 <div class="sidenav">
-<img src="/gorilla-100.png" class="sidenav-logo">
-<a href="/" id="sidenav-title">FantasyFooball</a>
+<img src="/football.png" class="sidenav-logo">
+<a href="/" id="sidenav-title">Fooball</a>
 <% if current_user %>
-<%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => "sidenav-sign-out" %>
+<%= link_to 'Sign Out', destroy_user_session_path, method: :get, :class => "sidenav-sign-out" %>
 <%= link_to "Create a League", new_league_path, :class => "sidenav-sign-out" %>
 <% else %>
 <%= link_to 'Sign Up', new_user_registration_path, :class => "sidenav-sign-up" %>

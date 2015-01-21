@@ -1,11 +1,15 @@
 <div class="user-home-container">
 <div class="user-home-title">
-My Teams and Leagues
+My Teams and Leagues:
 </div>
-<% @teams.each do |team| %>
 <div class="user-home-row">
+<% if @teams.empty? %>
+You are not in any leagues. <%= link_to "Create a League", new_league_path %> and invite your friends!
+<% end %>
+<% @teams.each do |team| %>
 <div class="user-home-row-team-name">
-<%= team.name %>
+<%= link_to team.name, league_team_path(team.league, team) %>
+<%= link_to team.league.name, league_path(team.league) %>
 </div>
 <div class="user-home-row-league-members-amount">
 <%= team.league.member_amount %>
@@ -13,4 +17,5 @@ My Teams and Leagues
 </div>
 <% end %>
 </div>
+<%= link_to "Join a League", teams_invite_path, :class => "index-join-league" %>
 <%= link_to "Create a League", new_league_path, :class => "index-create-league" %>

@@ -1,5 +1,21 @@
+<div class="league-team-list">
+<div class="league-team-list-title">
+Standings:
+</div>
+<% i = 1 %>
 <% if @teams %>
 <% @teams.each do |team| %>
+<div class="league-team-list-row">
+<%= i %>.
 <%= team.name %>
+<% i += 1 %>
+</div>
 <% end %>
 <% end %>
+<% if @teams.count < @league.member_amount.to_i %>
+<div class="warning">
+Your league is not full yet and cannot draft (<%= @teams.count %> out of <%= @league.member_amount %> teams registered). Invite members with your League ID:
+<span style="color: green"><%= @league.id %></span>
+</div>
+<% end %>
+</div>

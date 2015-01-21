@@ -1,6 +1,19 @@
 class TeamsController < ApplicationController
   before_action :authenticate
 
+  def invite
+  @team = Team.new
+  end
+
+  def join
+    if params[:team][:league_id].empty?
+      flash[:notice] = "Invalid League ID"
+      render :invite
+    else @league = League.find(params[:team][:league_id])
+      redirect_to new_league_team_path(@league)
+    end
+  end
+
   def new
     @team = Team.new
     @league = League.find(params[:league_id])
