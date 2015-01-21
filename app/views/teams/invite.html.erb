@@ -1,0 +1,5 @@
+<%= form_for [@team], method: :post, url: teams_join_path do |f| %>
+<%= f.label :league_id %>
+<%= f.text_field :league_id %>
+<%= f.submit "Submit" %>
+<% end %>

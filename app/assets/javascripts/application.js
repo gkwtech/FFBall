@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require foundation
 //= require_tree .
-
-$(function(){ $(document).foundation(); });
+$('.start-draft-minimize-button').click(function () {
+  $('.start-draft-container').css("display", "none");
+  $('.start-draft-button-minimized').css("display", "flex");
+});

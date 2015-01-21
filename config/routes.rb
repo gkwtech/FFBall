@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   root 'leagues#index'
   devise_for :users
 
+  get "teams/invite", :to => 'teams#invite'
+  post "teams/join", :to => 'teams#join'
+
   resources :players, only: [:show]
   resources :leagues, only: [:new, :create, :show] do
     resources :teams, only: [:new, :create, :show, :index] do

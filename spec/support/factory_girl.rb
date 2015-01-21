@@ -13,10 +13,6 @@ FactoryGirl.define do
     league
   end
 
-  factory :commissioner, parent: :user do
-    role "commissioner"
-  end
-
   factory :league do
     name "name"
     password "password"
@@ -39,4 +35,8 @@ FactoryGirl.define do
     status "inactive"
   end
 
+  factory :draft do
+    year 20150901
+    name "league name"
+  end
 end

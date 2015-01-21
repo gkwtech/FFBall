@@ -13,7 +13,7 @@
 <div class="team-name">
 <%= @team.name %>
 </div>
-<%= @team.players.each do |player| %>
+<% @team.players.each do |player| %>
 <%= "#{player.first_name} + #{player.last_name}" %>
   <%= form_for [@league, @team, @roster] do |f| %>
     <%= f.label :position %>

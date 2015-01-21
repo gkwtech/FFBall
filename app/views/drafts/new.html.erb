@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Fooball</title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <link href='http://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
+  <%= csrf_meta_tags %>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <script>
+  $(function() {
+    $( "#sortable" ).sortable({
+      revert: true
+    });
+    $( "#draggable" ).draggable({
+      connectToSortable: "#sortable",
+      helper: "clone",
+      revert: "invalid"
+    });
+    $( "ul, li" ).disableSelection();
+  });
+  </script>
+</head>
+
+<body>
+<div class="draft-header">
+<%= "#{Time.now.year} #{@league.name} Draft" %>
+</div>
+<div class="draft-container">
+  Set draft order:
+  <ol id="sortable">
+  <% @league.teams.each do |team| %>
+  <li class="sortable-list-element"><%= team.name %></li>
+  <% end %>
+    </ol>
+  </div>
+</body>

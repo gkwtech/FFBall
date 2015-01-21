@@ -4,4 +4,17 @@ class League < ActiveRecord::Base
   has_many :drafts
 
   validates :name, presence: true
+
+  def has_drafted?
+    if self.drafts.empty?
+      return false
+    else
+      self.drafts.each do |draft|
+        if draft.year.to_i == Time.now.year
+          return true
+        end
+      end
+    end
+    false
+  end
 end

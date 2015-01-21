@@ -9,4 +9,12 @@ class ApplicationController < ActionController::Base
       redirect_to new_user_session_path
     end
   end
+
+  def commissioner_authenticate
+    league = League.find(params[:league_id])
+    if league.commissioner_id != current_user.id
+      flash[:notice] = "Only the commissioner can do that"
+      redirect_to league_path
+    end
+  end
 end
