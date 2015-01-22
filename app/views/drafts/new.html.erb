@@ -26,12 +26,20 @@
 <div class="draft-header">
 <%= "#{Time.now.year} #{@league.name} Draft" %>
 </div>
-<div class="draft-container">
+<div class="draft-order-container">
+<%= form_for @draft, method: :post, action: :create, url: league_drafts_path(@league) do |f| %>
   Set draft order:
   <ol id="sortable">
+  <% i = 1 %>
   <% @league.teams.each do |team| %>
-  <li class="sortable-list-element"><%= team.name %></li>
+  <li class="sortable-list-element">
+  <%= team.name %>
+  <%= hidden_field_tag "team_id-#{i}", "#{team.id}" %>
+  <% i += 1 %>
+  </li>
   <% end %>
-    </ol>
-  </div>
+  </ol>
+  <%= f.submit "Submit", :class => "login-submit" %>
+<% end %>
+</div>
 </body>

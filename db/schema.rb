@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121200006) do
+ActiveRecord::Schema.define(version: 20150121233646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,13 +29,13 @@ ActiveRecord::Schema.define(version: 20150121200006) do
     t.string   "password"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.integer  "commissioner_id"
+    t.integer  "commissioner_id", null: false
     t.string   "member_amount",   null: false
   end
 
   create_table "picks", force: :cascade do |t|
-    t.integer  "number"
-    t.integer  "price"
+    t.integer  "number",     null: false
+    t.integer  "price",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20150121200006) do
     t.integer  "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "birthdate"
   end
 
   create_table "rosters", force: :cascade do |t|
@@ -70,14 +71,14 @@ ActiveRecord::Schema.define(version: 20150121200006) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.integer  "user_id",    null: false
-    t.integer  "league_id",  null: false
-    t.integer  "wins"
-    t.integer  "losses"
-    t.integer  "ties"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",                   null: false
+    t.integer  "user_id",                null: false
+    t.integer  "league_id",              null: false
+    t.integer  "wins",       default: 0, null: false
+    t.integer  "losses",     default: 0, null: false
+    t.integer  "ties",       default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|

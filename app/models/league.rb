@@ -4,6 +4,7 @@ class League < ActiveRecord::Base
   has_many :drafts
 
   validates :name, presence: true
+  validates :member_amount, presence: true
 
   def has_drafted?
     if self.drafts.empty?

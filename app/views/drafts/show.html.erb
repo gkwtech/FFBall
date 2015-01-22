@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Fooball</title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <link href='http://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <style>
+  h1 { padding: .2em; margin: 0; }
+  #products { float:left; width: 500px; margin-right: 2em; }
+  #cart { width: 200px; float: left; margin-top: 1em; }
+  /* style the list to maximize the droppable hitarea */
+  #cart ol { margin: 0; padding: 1em 0 1em 3em; }
+  </style>
+  <script>
+  $(function() {
+    $( "#catalog" ).accordion();
+    $( ".player-name" ).draggable({
+      appendTo: "body",
+      helper: "clone"
+    });
+    $( "#nomination" ).droppable({
+      activeClass: "#nomination",
+      hoverClass: "#nomination",
+      accept: ":not(.ui-sortable-helper)",
+      drop: function( event, ui ) {
+        $( this ).find( ".placeholder" ).remove();
+        $( "<div></div>" ).text( ui.draggable.text() ).addClass("nominated-player").appendTo( this );
+        $( this ).addClass( "bid" );
+        $( this ).removeAttr('id');
+        $( ".new_pick" ).css("display", "flex");
+      }
+    }).sortable({
+      items: "li:not(.placeholder)",
+      sort: function() {
+        // gets added unintentionally by droppable interacting with sortable
+        // using connectWithSortable fixes this, but doesn't allow you to customize active/hoverClass options
+        $( this ).removeClass( "ui-state-default" );
+      }
+    });
+  });
+  </script>
+</head>
+
+<body>
+  <div class="draft-header">
+  <div class="draft-header-title">
+    <%= "#{Time.now.year} #{@league.name} Draft" %>
+  </div>
+
+  <% i = 1 %>
+  <% @teams.each do |team| %>
+  <div class="draft-header-teams">
+  <div class="draft-header-teams-position">
+  <%= i %>
+  </div>
+  <div class="draft-header-teams-name">
+  <%= team.name %>
+  </div>
+  </div>
+  <% i += 1 %>
+  <% end %>
+  </div>
+
+  <div class="draft-container">
+    <div class="player-list">
+      <div class="player-row-header">
+        <div class="player-position-header">
+        Pos:
+        </div>
+        <div class="player-name-header">
+        Player Name
+        </div>
+        <div class="player-age-header">
+        Age
+        </div>
+      </div>
+      <div class="player-list-content">
+        <% @players.each do |player| %>
+          <% if !player.position.nil? %>
+            <div class="player-row">
+              <div class="player-position">
+                <%= player.position %>
+              </div>
+              <div class="player-name">
+                <%= "#{player.first_name} #{player.last_name}"%>
+              </div>
+              <div class="player-age">
+                <%= player.age %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div id="nomination">
+      N O M I N A T E
+    </div>
+    <%= form_for [@league, @draft, @pick] do |f| %>
+    <%= f.label :price, "Price: $", :class => "price-label" %>
+    <%= f.text_field :price, :class => "price-input" %>
+    <%= f.submit "Sold", :class => "price-submit" %>
+    <% end %>
+
+    <div id="draft-queue">
+    <div id="draft-queue-title">
+    Queue Nominations:
+    </div>
+    <ol id="draft-queue-drop">
+      <li class="placeholder">
+        (Drag and drop here)
+      </li>
+    </ol>
+    </div>
+  </div>
+</body>

@@ -13,7 +13,9 @@ Rails.application.routes.draw do
         post "/drop", to: 'players#drop', as: :drop
       end
     end
-    resources :drafts, only: [:index, :show, :new, :create]
+    resources :drafts, only: [:index, :show, :new, :create] do
+      resources :picks
+    end
     resources :players, only: [:index, :update]
   end
   # The priority is based upon order of creation: first created -> highest priority.

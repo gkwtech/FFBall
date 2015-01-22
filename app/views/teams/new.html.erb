@@ -1,7 +1,6 @@
-<div class="login-form-container">
-<div class="login-title">Create your team</div>
 <%= @errors %>
 <%= form_for [@league, @team], :class => "login-form" do |f| %>
+<div class="new-team-title">Create your team</div>
   <div class="login-email-container">
 <%= f.label :name, :class => "login-email"  %>
 <%= f.text_field :name, :class => "login-email-field"  %>
