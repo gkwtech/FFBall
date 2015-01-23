@@ -25,7 +25,7 @@ class DraftsController < ApplicationController
     @draft = Draft.new(year: DateTime.now, league_id: @league.id)
     if @draft.save
       @pick = Pick.new(number: 1)
-      @round = Round.create(number: 1, league_id: @league.id)
+      @round = Round.new(number: 1, draft_id: @draft.id)
       @team_lineups = {}
       @teams.each do |team|
         @team_lineups[team.id] = team.project_lineup

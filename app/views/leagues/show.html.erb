@@ -3,7 +3,7 @@
 </div>
 <div class="league-navbar">
 <%= link_to "League Home", league_path(@league), class: "league-navbar-element" %>
-<a href="#" class="league-navbar-element">Free Agents</a>
+<%= link_to "Free Agents", league_players_path(@league), class: "league-navbar-element" %>
 <a href="#" class="league-navbar-element">League History</a>
 <a href="#" class="league-navbar-element">Schedule</a>
 <a href="#" class="league-navbar-element">League Settings</a>
