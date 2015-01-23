@@ -1,6 +1,38 @@
-#FFBall
+#FooBall
 
 [![Build Status](https://travis-ci.org/tylyon/FFBall.svg)](https://travis-ci.org/tylyon/FFBall) [![Code Climate](https://codeclimate.com/github/tylyon/FFBall/badges/gpa.svg)](https://codeclimate.com/github/tylyon/FFBall) [![Coverage Status](https://coveralls.io/repos/tylyon/FFBall/badge.svg)](https://coveralls.io/r/tylyon/FFBall)
+**IMPORTANT**
+
+*Setup Walkthrough*
+1. From your terminal run the following commands in the root directory of your cloned folder:
++bundle install
++rake db:create
++rake db:migrate
++rake db:seed
++rails s
+2. Visit [http://localhost:3000](http://localhost:3000)
+3. There is an option to sign up. I would advise not going through the process because:
++You need to create a league
++You need to fill the league with teams
++You need to fill the teams with players via the draft<br>
+Instead, sign in as a user from the db/seeds.rb file.<br>
+You will probably want to choose the user assigned with<br>
+the league commissioner's id, which will give you permission to start the draft<br>
+4. Code has mostly not been refactored. Basic gist of the setup is:
++A visitor can create a user
++A user can create a league, thus becoming its commissioner
++A league has a set amount of teams
++A user can create a team for that league, either immediately as commissioner or<br>
+via privately sharing the League ID and entering it in the signup page.
++Once the league has hit the set amount of teams, the commissioner can initiate the draft
++Once the draft has begun, the commissioner must manually enter each draft pick
++Only auction drafts are available at the moment
++A new draft page renders with each pick. Teams are updated and their changes reflected via re-rendering
++The draft is potentially neverending. I haven't gotten to that point.<br>
+Testing will be difficult/not desirable due to large amounts of factories,<br>
+but most importantly, the amount of javascript that will be needed in order for the app to<br>
+perform reasonably.
++If the draft does complete, each team will have its changes reflected in their team page
 
 ##User Stories
   As an authenticated user

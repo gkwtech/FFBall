@@ -37,6 +37,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @league = League.find(@team.league_id)
     @roster = Roster.new()
+    @lineup = @team.project_lineup
   end
 
   def update
