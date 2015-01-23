@@ -27,7 +27,7 @@
 #   binding.pry
 # end
 
-file = File.open("nflgame/nflgame/players.json")
+file = File.open("./nflgame/nflgame/players.json")
 file = JSON.parse(file.read)
 file.each do |player|
   unless player[1]["birthdate"].nil?
