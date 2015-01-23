@@ -25,17 +25,21 @@ ActiveRecord::Schema.define(version: 20150121233646) do
   end
 
   create_table "leagues", force: :cascade do |t|
-    t.string   "name",            null: false
+    t.string   "name",                         null: false
     t.string   "password"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "commissioner_id", null: false
-    t.string   "member_amount",   null: false
+    t.integer  "max_players",     default: 13, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "commissioner_id",              null: false
+    t.string   "member_amount",                null: false
   end
 
   create_table "picks", force: :cascade do |t|
     t.integer  "number",     null: false
     t.integer  "price",      null: false
+    t.integer  "round_id",   null: false
+    t.integer  "player_id",  null: false
+    t.integer  "team_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -64,8 +68,9 @@ ActiveRecord::Schema.define(version: 20150121233646) do
   end
 
   create_table "rounds", force: :cascade do |t|
-    t.integer  "number"
+    t.integer  "number",     null: false
     t.time     "length"
+    t.integer  "draft_id",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

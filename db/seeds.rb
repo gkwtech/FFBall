@@ -52,3 +52,59 @@ file.each do |player|
     end
   end
 end
+
+users = User.create([
+  {email: "a@a.com", password: "password"},
+  {email: "b@b.com", password: "password"},
+  {email: "c@c.com", password: "password"},
+  {email: "d@d.com", password: "password"},
+  {email: "e@e.com", password: "password"},
+  {email: "f@f.com", password: "password"},
+  {email: "g@g.com", password: "password"},
+  {email: "h@h.com", password: "password"}])
+league = League.create(name: "Fake League", commissioner_id: users[0].id, member_amount: "8")
+teams = Team.create([
+  {name: "Cowboys", user_id: users[0].id, league_id: league.id},
+  {name: "Bears", user_id: users[1].id, league_id: league.id},
+  {name: "Lions", user_id: users[2].id, league_id: league.id},
+  {name: "Eagles", user_id: users[3].id, league_id: league.id},
+  {name: "Chiefs", user_id: users[4].id, league_id: league.id},
+  {name: "Hawks", user_id: users[5].id, league_id: league.id},
+  {name: "Giants", user_id: users[6].id, league_id: league.id},
+  {name: "Pirates", user_id: users[7].id, league_id: league.id}])
+
+# drafted_league = League.create(name: "Drafted League", commissioner_id: users[0].id, member_amount: "8")
+# drafted_league_teams = Team.create([
+#   {name: "Patriots", user_id: users[0].id, league_id: drafted_league.id},
+#   {name: "Bears", user_id: users[1].id, league_id: drafted_league.id},
+#   {name: "Lions", user_id: users[2].id, league_id: drafted_league.id},
+#   {name: "Eagles", user_id: users[3].id, league_id: drafted_league.id},
+#   {name: "Chiefs", user_id: users[4].id, league_id: drafted_league.id},
+#   {name: "Hawks", user_id: users[5].id, league_id: drafted_league.id},
+#   {name: "Giants", user_id: users[6].id, league_id: drafted_league.id},
+#   {name: "Pirates", user_id: users[7].id, league_id: drafted_league.id}])
+# drafted_league_draft = Draft.create([
+#   {year: DateTime.now.year, league_id: drafted_league.id}])
+# total_picks = (drafted_league.teams.count * drafted_league.max_players)
+# round_reset = drafted_league.teams.count
+# round_number = 1
+# pick_number = 1
+# drafted_league_draft_round = drafted_league_draft.rounds.new(number: round_number)
+# players = Player.all
+# until total_picks == 0
+#   if round_reset == 0
+#     round_number += 1
+#     drafted_league_draft_round = drafted_league_draft.rounds.new(number: round_number)
+#   end
+#   drafted_league_draft_round.picks.new(number: pick_number)
+# end
+
+
+
+
+
+
+
+
+
+

@@ -19,3 +19,13 @@ class League < ActiveRecord::Base
     false
   end
 end
+
+
+
+
+
+
+
+
+
+

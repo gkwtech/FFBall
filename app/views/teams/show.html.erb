@@ -13,8 +13,22 @@
 <div class="team-name">
 <%= @team.name %>
 </div>
-<% @team.players.each do |player| %>
-<%= "#{player.first_name} + #{player.last_name}" %>
+
+
+<div class="team-roster">
+  <% @lineup.each do |position, player| %>
+  <div class="team-roster-row">
+  <div class="team-roster-position">
+  <%= position.to_s %>
+  </div>
+  <div class="team-roster-player">
+  <% if player.is_a?(String) %>
+  <%= player %>
+  <% else %>
+  <div class="team-roster-player-name">
+  <%= "#{player.first_name} #{player.last_name}" %>
+  </div>
+  <div class="team-roster-player-form">
   <%= form_for [@league, @team, @roster] do |f| %>
     <%= f.label :position %>
     <%= f.select(:position, %w[QB RB WR TE FLEX DEF BN]) %>
@@ -22,65 +36,12 @@
     <%= hidden_field_tag "player_id", player.id %>
     <%= f.submit "Save Lineup" %>
   <% end %>
-<%= button_to "Drop Player", league_team_player_drop_path(@league, @team, player) %>
-<% end %>
-
-<div class="team-roster">
-  <div class="team-roster-row">
-    <div class="team-roster-row-position">
-    Position
-    </div>
-    <div class="team-roster-row-name">
-    Name
-    </div>
   </div>
-  <div class="team-roster-row">
-    <div class="team-roster-row-position">
-    QB
-    </div>
-    <div class="team-roster-row-name">
-    Empty
-    </div>
+  <% end %>
   </div>
-  <div class="team-roster-row">
-    <div class="team-roster-row-position">
-    RB
-    </div>
-    <div class="team-roster-row-name">
-    Empty
-    </div>
+  <%= button_to "Drop Player", league_team_player_drop_path(@league, @team, player) %>
   </div>
-  <div class="team-roster-row">
-    <div class="team-roster-row-position">
-    RB
-    </div>
-    <div class="team-roster-row-name">
-    Name
-    </div>
-  </div>
-  <div class="team-roster-row">
-    <div class="team-roster-row-position">
-    WR
-    </div>
-    <div class="team-roster-row-name">
-    Name
-    </div>
-  </div>
-  <div class="team-roster-row">
-    <div class="team-roster-row-position">
-    WR
-    </div>
-    <div class="team-roster-row-name">
-    Name
-    </div>
-  </div>
-  <div class="team-roster-row">
-    <div class="team-roster-row-position">
-    TE
-    </div>
-    <div class="team-roster-row-name">
-    Name
-    </div>
-  </div>
+  <% end %>
 </div>
+
 </div>

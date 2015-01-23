@@ -32,6 +32,8 @@
         $( this ).addClass( "bid" );
         $( this ).removeAttr('id');
         $( ".new_pick" ).css("display", "flex");
+        var hiddenInput = $(".hidden-player-id", ui.draggable);
+        $(".price-input").append(hiddenInput);
       }
     }).sortable({
       items: "li:not(.placeholder)",
@@ -42,6 +44,36 @@
       }
     });
   });
+  $(function() {
+    $( "#draft-dropdown-teams-placeholder" ).hover(
+      function() {
+        $( this ).css("display", "none");
+        $( ".new_pick-team" ).css("display", "block");
+      }
+    );
+  });
+  $(function() {
+    $( ".new_pick-team" ).click(
+      function() {
+        var selectedTeam = $( "form option[value=" + $(this).val() + "]").text()
+        $( ".new_pick-team" ).css("display", "none");
+        $( "#draft-dropdown-teams-placeholder" ).css("display", "block").text(selectedTeam);
+      })
+  })
+  $(function() {
+    $( ".draft-header-teams" ).mouseenter(
+      function() {
+        var value = $(this).attr("value");
+        $(".draft-header-teams-dropdown[value=" + value + "]").css("display", "block");
+      })
+  })
+  $(function() {
+    $( ".draft-header-teams" ).mouseout(
+      function() {
+        var value = $(this).attr("value");
+        $(".draft-header-teams-dropdown[value=" + value + "]").css("display", "none");
+      })
+  })
   </script>
 </head>
 
@@ -53,7 +85,7 @@
 
   <% i = 1 %>
   <% @teams.each do |team| %>
-  <div class="draft-header-teams">
+  <div class="draft-header-teams" value="<%= team.id %>">
   <div class="draft-header-teams-position">
   <%= i %>
   </div>
@@ -87,6 +119,7 @@
               </div>
               <div class="player-name">
                 <%= "#{player.first_name} #{player.last_name}"%>
+                <input type="hidden" class="hidden-player-id" name="player_id" value="<%= player.id %>">
               </div>
               <div class="player-age">
                 <%= player.age %>
@@ -102,6 +135,20 @@
     <%= form_for [@league, @draft, @pick] do |f| %>
     <%= f.label :price, "Price: $", :class => "price-label" %>
     <%= f.text_field :price, :class => "price-input" %>
+    <%= hidden_field_tag "round_id", "#{@round.id}" %>
+    <%= f.label :team_id, "Drafted By:" %>
+    <div class="draft-dropdown-teams">
+    <div id="draft-dropdown-teams-placeholder">
+    Pick a Team
+    </div>
+    <%= f.select :team_id, @teams.collect {|x| [x.name, x.id]}, {}, :multiple => true, :class => "new_pick-team" %>
+    </div>
+    <%= hidden_field_tag "pick[number]", "#{@pick.number}" %>
+    <% i = 0 %>
+    <% @teams.each do |team| %>
+      <%= hidden_field_tag "team_order[#{i}]", "#{team.id}" %>
+      <% i += 1 %>
+    <% end %>
     <%= f.submit "Sold", :class => "price-submit" %>
     <% end %>
 
