@@ -26,6 +26,7 @@ class DraftsController < ApplicationController
     if @draft.save
       @pick = Pick.new(number: 1)
       @round = Round.new(number: 1, draft_id: @draft.id)
+      @round.save
       @team_lineups = {}
       @teams.each do |team|
         @team_lineups[team.id] = team.project_lineup
