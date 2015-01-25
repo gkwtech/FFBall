@@ -3,7 +3,6 @@
 <head>
   <title>Fooball</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
-  <link href='http://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
@@ -23,7 +22,7 @@
 </head>
 
 <body>
-<div class="draft-header">
+<div class="draft-header-new">
 <%= "#{Time.now.year} #{@league.name} Draft" %>
 </div>
 <div class="draft-order-container">

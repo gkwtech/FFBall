@@ -3,7 +3,6 @@
 <head>
   <title>Fooball</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
-  <link href='http://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -94,6 +93,24 @@
   </div>
   </div>
   <% i += 1 %>
+
+<div class="draft-header-teams-dropdown" value="<%= team.id %>">
+  <% team.project_lineup.each do |position, player| %>
+    <div class="draft-header-teams-row">
+      <div class="draft-header-teams-position">
+      <%= position.to_s %>
+      </div>
+      <div class="draft-header-teams-player-name">
+      <% if player.is_a?(String) %>
+      <%= player %>
+      <% else %>
+      <%= "#{player.first_name} #{player.last_name}" %>
+      <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
   <% end %>
   </div>
 

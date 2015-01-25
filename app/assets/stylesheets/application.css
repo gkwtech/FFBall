@@ -935,6 +935,8 @@ box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.36);
 }
 
 .draft-header-teams-dropdown {
+position: absolute;
+margin-top: 2%;
 width: 100%;
 display: none;
 }
@@ -977,5 +979,18 @@ color: rgb(236, 240, 241);
 background: rgb(149, 165, 166);
 }
 
-
+.draft-header-new {
+  width: 100%;
+background: rgba(44, 62, 80, 0.82);
+text-align: center;
+color: #ecf0f1;
+font-style: italic;
+font-size: 1vw;
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: nowrap;
+z-index: 5;
+padding: .5%;
+}
 
