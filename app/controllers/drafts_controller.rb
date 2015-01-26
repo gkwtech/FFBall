@@ -9,8 +9,13 @@ class DraftsController < ApplicationController
   end
   def new
     @league = League.find(params[:league_id])
-    @draft = Draft.new
-    render layout: false
+    if @league.teams.count < @league.member_amount.to_i
+      flash[:notice] = "Your league is not full yet and cannot draft"
+      redirect_to league_path(@league)
+    else
+      @draft = Draft.new
+      render :new, layout: false
+    end
   end
   def create
     @league = League.find(params[:league_id])
@@ -22,7 +27,7 @@ class DraftsController < ApplicationController
     end
     @teams.reverse!
     @players = Player.all
-    @draft = Draft.new(year: DateTime.now, league_id: @league.id)
+    @draft = Draft.new(league_id: @league.id)
     if @draft.save
       @pick = Pick.new(number: 1)
       @round = Round.new(number: 1, draft_id: @draft.id)

@@ -13,12 +13,6 @@ FactoryGirl.define do
     league
   end
 
-  factory :league do
-    name "name"
-    password "password"
-    member_amount 14
-  end
-
   factory :player do
     first_name "first"
     last_name "last"
@@ -27,6 +21,7 @@ FactoryGirl.define do
     height 8
     weight 8
     years_pro 2
+    birthdate DateTime.now
   end
 
   factory :roster do
@@ -35,8 +30,4 @@ FactoryGirl.define do
     status "inactive"
   end
 
-  factory :draft do
-    year 20150901
-    name "league name"
-  end
 end

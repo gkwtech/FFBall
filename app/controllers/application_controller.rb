@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     league = League.find(params[:league_id])
     if league.commissioner_id != current_user.id
       flash[:notice] = "Only the commissioner can do that"
-      redirect_to league_path
+      redirect_to league_path(league)
     end
   end
 end

@@ -1,8 +1,7 @@
 class CreateDrafts < ActiveRecord::Migration
   def change
     create_table :drafts do |t|
-      t.integer :year
-      t.string :name
+      t.string :type, default: "auction", null: false
 
       t.timestamps null: false
     end

@@ -9,8 +9,8 @@ class LeaguesController < ApplicationController
     @league = League.new(league_params)
     @league.commissioner_id = current_user.id
     if @league.save
-      flash[:notice] = "League created"
-      redirect_to league_path(@league)
+      flash[:notice] = "League created. Now add your team:"
+      redirect_to new_league_team_path(@league)
     else
       @errors = @league.errors.full_messages
       render :new

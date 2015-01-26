@@ -80,7 +80,7 @@ drafted_league_teams = Team.create([
   {name: "Hawks", user_id: users[5].id, league_id: drafted_league.id},
   {name: "Giants", user_id: users[6].id, league_id: drafted_league.id},
   {name: "Pirates", user_id: users[7].id, league_id: drafted_league.id}])
-drafted_league_draft = Draft.create(year: 2015, league_id: drafted_league.id)
+drafted_league_draft = Draft.create(league_id: drafted_league.id)
 total_picks = (drafted_league.teams.count * drafted_league.max_players)
 round_reset = drafted_league.teams.count - 1
 round_number = 1

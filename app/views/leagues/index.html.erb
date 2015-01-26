@@ -3,7 +3,7 @@
 My Teams and Leagues:
 </div>
 <% if @teams.empty? %>
-You are not in any leagues. <%= link_to "Create a League", new_league_path %> and invite your friends!
+You are not in any leagues. <%= link_to "Create a League Now", new_league_path %> and invite your friends!
 <% end %>
 <% @teams.each do |team| %>
 <div class="user-home-row">

@@ -17,10 +17,9 @@ ActiveRecord::Schema.define(version: 20150125062323) do
   enable_extension "plpgsql"
 
   create_table "drafts", force: :cascade do |t|
-    t.integer  "year"
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "type",       default: "auction", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "league_id"
   end
 
