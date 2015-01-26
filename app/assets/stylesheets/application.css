@@ -13,6 +13,7 @@ display: inline-block;
 position: absolute;
 right: 0;
 height: 100%;
+overflow-y: scroll;
 }
 
 .sidenav {
@@ -273,10 +274,6 @@ box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.36);
 }
 
 .svg-icon {
-display: inline-block;
-margin-left: 6%;
-margin-top: 5%;
-float: left;
 width: 1.5em;
 height: 1.5em;
 }
@@ -284,7 +281,7 @@ height: 1.5em;
 .svg-icon path,
 .svg-icon polygon,
 .svg-icon rect {
-fill: #27ae60;
+fill: rgba(255, 255, 255, 0.62);
 }
 
 .svg-icon circle {
@@ -391,8 +388,11 @@ color: rgb(236, 240, 241);
 }
 
 .team-roster-row {
-  width: 100%;
+width: 100%;
 border-bottom: 1px solid #bdc3c7;
+display: flex;
+justify-content: space-between;
+align-items: center;
 }
 
 .team-roster-row-position {
@@ -408,10 +408,70 @@ width: 83%;
 text-align: center;
 }
 
+#roster_position {
+-webkit-appearance: none;
+border: none;
+padding: 2%;
+font-size: 1.5vw;
+font-family: futura;
+background: #34495e;
+border-radius: 0;
+margin: 0;
+box-sizing: initial;
+white-space: normal;
+text-align: center;
+width: 50%;
+color: rgb(236, 240, 241);
+}
+
+.lineup-save {
+width: 50%;
+-webkit-appearance: none;
+border: 0;
+font-family: futura;
+background: #c0392b;
+padding: 2%;
+color: rgb(236, 240, 241);
+font-size: 1.5vw;
+}
+
+.lineup-save:hover {
+background: #27ae60;
+box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.19);
+cursor: pointer;
+}
+
+.team-roster-player {
+  padding: 1%;
+width: 80%;
+background: #ecf0f1;
+color: rgb(127, 140, 141);
+}
+
+.drop-player-button {
+  text-decoration: none;
+color: white;
+background: #c0392b;
+padding: 1%;
+font-size: 1vw;
+text-align: center;
+width: 8%;
+box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.team-roster-position {
+  padding: 1%;
+background: #7f8c8d;
+color: #ecf0f1;
+border-right: 1px solid rgba(0, 0, 0, 0.13);
+width: 5%;
+}
+
 .league-team-list {
 margin: 5%;
 background: #ecf0f1;
-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.21);
+box-shadow: 3px 6px 1px rgba(0, 0, 0, 0.49);
+padding-bottom: .25%;
 }
 
 .league-team-list-title {
@@ -425,8 +485,12 @@ box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.12);
 }
 
 .league-team-list-row {
-  margin: 1%;
-padding: 1%;
+margin: 1%;
+display: flex;
+justify-content: space-between;
+background: #95a5a6;
+align-items: center;
+text-decoration: none;
 }
 
 .warning {
@@ -756,20 +820,26 @@ font-size: 2vw;
 display: inline-block;
 padding: 2%;
 border-right: 1px solid #bdc3c7;
+width: 33%;
 }
 
 .user-home-row-team-record {
-  display: inline-block;
+display: inline-block;
 color: #bdc3c7;
 padding: 2%;
+width: 33%;
+text-align: center;
+font-size: 1vw;
 }
 
 .user-home-row-team-league {
-  text-decoration: none;
+text-decoration: none;
 color: rgb(234, 238, 239);
 font-size: 2vw;
 padding: 2%;
 border-left: 1px solid #bdc3c7;
+width: 33%;
+text-align: right;
 }
 
 .user-home-row-team-name:hover, .user-home-row-team-league:hover {
@@ -827,7 +897,6 @@ padding-left: 1%;
 
 .draft-header-teams {
 display: flex;
-width: 9%;
 align-items: center;
 border-left: 1px solid rgb(149, 165, 166);
 padding-left: 1%;
@@ -936,9 +1005,14 @@ box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.36);
 
 .draft-header-teams-dropdown {
 position: absolute;
-margin-top: 2%;
-width: 100%;
+width: 10%;
 display: none;
+background: #95a5a6;
+flex-direction: column;
+border-left: solid 1px rgb(189, 195, 199);
+border-right: solid 1px rgb(189, 195, 199);
+box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.17);
+border-bottom: solid 1px rgb(189, 195, 199);
 }
 
 .draft-header-teams-dropdown-container{
@@ -994,3 +1068,206 @@ z-index: 5;
 padding: .5%;
 }
 
+.draft-team-container {
+  width: 10%;
+display: flex;
+justify-content: space-between;
+flex-direction: column;
+}
+
+.draft-header-teams-row {
+  display: flex;
+justify-content: space-around;
+align-items: center;
+border-top: 1px solid rgb(189, 195, 199);
+}
+
+.league-team-list-row-standing {
+background: rgba(0, 0, 0, 0.16);
+padding: 1%;
+width: 7%;
+text-align: center;
+text-decoration: none;
+color: #bdc3c7;
+border-right: 1px solid rgba(108, 118, 119, 0.41);
+}
+
+.league-team-list-row-name {
+text-decoration: none;
+color: rgb(236, 240, 241);
+width: 75%;
+padding: 1%;
+}
+.league-team-list-row-record {
+width: 18%;
+text-align: center;
+color: white;
+border-left: 1px solid rgba(127, 140, 141, 0.73);
+background: rgba(255, 255, 255, 0.37);
+padding: 1%;
+}
+
+.league-team-list-row:hover {
+  background: #27ae60;
+box-shadow: 4px 4px 1px rgba(0, 0, 0, 0.46);
+}
+
+.new_roster {
+  display: flex;
+width: 15%;
+justify-content: space-between;
+align-items: center;
+align-content: center;
+}
+
+.free-agent-container{
+width: 94%;
+margin: 3%;
+background: #ecf0f1;
+box-shadow: 6px 6px 1px rgba(0, 0, 0, 0.56);
+}
+
+.free-agent-row{
+display: flex;
+width: 100%;
+border-bottom: solid 1px #7f8c8d;
+justify-content: space-between;
+}
+
+.button_to {
+  display: inline-block;
+}
+
+.free-agent-row-position{
+  background: #95a5a6;
+width: 5%;
+text-align: center;
+color: #ecf0f1;
+border-right: solid 2px #7f8c8d;
+}
+
+.free-agent-row-player-name {
+color: #7f8c8d;
+width: 88%;
+padding-left: 2%;
+}
+
+.add-container {
+width: 5%;
+display: flex;
+justify-content: center;
+background: #95a5a6;
+border-left: solid 2px #7f8c8d;
+}
+
+.add-container:hover {
+    background: #27ae60;
+}
+
+.pagination {
+width: 100%;
+text-align: center;
+display: flex;
+justify-content: space-around;
+align-items: center;
+background: rgb(127, 140, 141);
+}
+
+.pagination > span > a {
+  text-decoration: none;
+color: rgb(236, 240, 241);
+}
+
+.pagecurrent {
+background: #2ecc71;
+color: rgb(236, 240, 241);
+width: 15%;
+padding: 1%;
+}
+
+.pagination > span {
+width: 100%;
+}
+
+.gap {
+  color: rgb(149, 165, 166);
+}
+
+.pagination > span > a {
+width: 100%;
+background: rgb(149, 165, 166);
+padding: 5% 15% 5% 15%;
+}
+
+.pagination > span > a:hover {
+  background: #2ecc71;
+}
+
+.player-search {
+background: rgb(149, 165, 166);
+display: flex;
+justify-content: space-around;
+padding: 1%;
+border-bottom: solid 2px rgb(127, 140, 141);
+}
+
+.player-search-form {
+background: rgb(236, 240, 241);
+-webkit-appearance: none;
+padding: 0;
+border: none;
+font-size: 1.5vw;
+padding: 1%;
+width: 50%;
+color: rgb(127, 140, 141);
+border: solid 2px rgb(127, 140, 141);
+}
+.player-search-submit {
+background: rgb(192, 57, 43);
+border: none;
+-webkit-appearance: none;
+font-family: futura;
+color: rgb(236, 240, 241);
+width: 30%;
+box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.2);
+font-size: 1.5vw;
+}
+
+.edit_roster {
+width: 16%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1%;
+}
+
+.free-agent-row > form {
+display: flex;
+width: 3%;
+background: rgb(149, 165, 166);
+justify-content: space-between;
+align-items: center;
+align-content: center;
+}
+
+.free-agent-row > form > .svg-icon {
+  width: 3%;
+position: absolute;
+}
+
+.free-agent-row > form > input {
+-webkit-appearance: none;
+border: 0;
+margin: 0;
+width: 100%;
+padding: 0;
+height: 2.5em;
+background: rgba(149, 165, 166, 0.42);
+padding: 1%;
+border-left: 2px solid rgb(127, 140, 141);
+z-index: 1;
+}
+
+.free-agent-row > form > input:hover {
+  cursor: pointer;
+}

@@ -3,17 +3,22 @@ class PlayersController < ApplicationController
 
   def index
     @league = League.find(params[:league_id])
-    current_user.teams.each do |team|
-      if team.league_id == @league.id
-        @team = team
+    @team = current_user.teams.where(league_id: @league.id).first
+    @unavailable_players = []
+    @league.teams.each do |team|
+      team.rosters.each do |roster|
+        if roster.status == "member"
+          @unavailable_players << roster.player_id
+        end
       end
     end
-    @players = []
-    Player.all.each do |player|
-      if player.team_id.nil?
-        @players << player
-      end
+    @available_players = Player.where.not(id: @unavailable_players, position: "")
+    if params[:search]
+      @available_players = @available_players.search(params[:search])
     end
+    @available_players_list = Kaminari.paginate_array(@available_players).page(params[:page]).per(30)
+    @roster = Roster.new
+    render :index
   end
 
   def update

@@ -37,7 +37,17 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @league = League.find(@team.league_id)
     @roster = Roster.new()
-    @lineup = @team.project_lineup
+    @team_lineup = []
+    @team.rosters.each do |roster|
+      if roster.position != "BN"
+        @team_lineup << roster
+      end
+    end
+    @team.rosters.each do |roster|
+      if roster.position == "BN"
+        @team_lineup << roster
+      end
+    end
   end
 
   def update

@@ -47,9 +47,7 @@ file.each do |player|
       years_pro: player[1]["years_pro"],
       position: player[1]["position"],
       birthdate: birthday)
-    if player.save
-      puts player.first_name + player.last_name + " saved!"
-    end
+    player.save
   end
 end
 
@@ -72,32 +70,73 @@ teams = Team.create([
   {name: "Hawks", user_id: users[5].id, league_id: league.id},
   {name: "Giants", user_id: users[6].id, league_id: league.id},
   {name: "Pirates", user_id: users[7].id, league_id: league.id}])
-
-# drafted_league = League.create(name: "Drafted League", commissioner_id: users[0].id, member_amount: "8")
-# drafted_league_teams = Team.create([
-#   {name: "Patriots", user_id: users[0].id, league_id: drafted_league.id},
-#   {name: "Bears", user_id: users[1].id, league_id: drafted_league.id},
-#   {name: "Lions", user_id: users[2].id, league_id: drafted_league.id},
-#   {name: "Eagles", user_id: users[3].id, league_id: drafted_league.id},
-#   {name: "Chiefs", user_id: users[4].id, league_id: drafted_league.id},
-#   {name: "Hawks", user_id: users[5].id, league_id: drafted_league.id},
-#   {name: "Giants", user_id: users[6].id, league_id: drafted_league.id},
-#   {name: "Pirates", user_id: users[7].id, league_id: drafted_league.id}])
-# drafted_league_draft = Draft.create([
-#   {year: DateTime.now.year, league_id: drafted_league.id}])
-# total_picks = (drafted_league.teams.count * drafted_league.max_players)
-# round_reset = drafted_league.teams.count
-# round_number = 1
-# pick_number = 1
-# drafted_league_draft_round = drafted_league_draft.rounds.new(number: round_number)
-# players = Player.all
-# until total_picks == 0
-#   if round_reset == 0
-#     round_number += 1
-#     drafted_league_draft_round = drafted_league_draft.rounds.new(number: round_number)
-#   end
-#   drafted_league_draft_round.picks.new(number: pick_number)
-# end
+drafted_league = League.create(name: "Drafted League", commissioner_id: users[0].id, member_amount: "8")
+drafted_league_teams = Team.create([
+  {name: "Patriots", user_id: users[0].id, league_id: drafted_league.id},
+  {name: "Bears", user_id: users[1].id, league_id: drafted_league.id},
+  {name: "Lions", user_id: users[2].id, league_id: drafted_league.id},
+  {name: "Eagles", user_id: users[3].id, league_id: drafted_league.id},
+  {name: "Chiefs", user_id: users[4].id, league_id: drafted_league.id},
+  {name: "Hawks", user_id: users[5].id, league_id: drafted_league.id},
+  {name: "Giants", user_id: users[6].id, league_id: drafted_league.id},
+  {name: "Pirates", user_id: users[7].id, league_id: drafted_league.id}])
+drafted_league_draft = Draft.create(year: 2015, league_id: drafted_league.id)
+total_picks = (drafted_league.teams.count * drafted_league.max_players)
+round_reset = drafted_league.teams.count - 1
+round_number = 1
+pick_number = 1
+drafted_league_draft_round = Round.create(number: round_number, draft_id: drafted_league_draft.id)
+players = Player.where(position: "QB")
+i = 0
+until total_picks == 0
+  if round_reset == -1
+    round_number += 1
+    pick_number = 1
+    drafted_league_draft_round = Round.create(number: round_number, draft_id: drafted_league_draft.id )
+    round_reset = drafted_league.teams.count - 1
+  end
+  if drafted_league_draft_round.number > 9
+    players = Player.where(position: "RB")
+  elsif drafted_league_draft_round.number > 4
+    players = Player.where(position: "WR")
+  elsif drafted_league_draft_round.number > 2
+    players = Player.where(position: "TE")
+  end
+  pick = drafted_league_draft_round.picks.new(
+    number: pick_number,
+    price: 5,
+    round_id: drafted_league_draft_round.id,
+    player_id: players[i].id,
+    team_id: drafted_league_teams[round_reset].id
+    )
+  team_roster = drafted_league_teams[round_reset].rosters.new(
+      player_id: pick.player_id,
+      status: "member")
+  if drafted_league_draft_round.number == 1
+    team_roster.position = "QB"
+  elsif drafted_league_draft_round.number == 3
+    team_roster.position = "TE"
+  elsif drafted_league_draft_round.number == 5
+    team_roster.position = "WR1"
+  elsif drafted_league_draft_round.number == 6
+    team_roster.position = "WR2"
+  elsif drafted_league_draft_round.number == 10
+    team_roster.position = "RB1"
+  elsif drafted_league_draft_round.number == 11
+    team_roster.position = "RB2"
+  elsif drafted_league_draft_round.number == 12
+    team_roster.position = "FLEX"
+  else
+    team_roster.position = "BN"
+  end
+  if pick.save && team_roster.save
+    puts "Round #{drafted_league_draft_round.number} | Pick #{pick.number} : #{Player.find(pick.player_id).first_name} #{Player.find(pick.player_id).last_name} - #{Team.find(pick.team_id).name}"
+  end
+  i += 1
+  round_reset -= 1
+  total_picks -=1
+  pick_number += 1
+end
 
 
 

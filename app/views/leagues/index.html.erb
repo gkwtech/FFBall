@@ -2,11 +2,11 @@
 <div class="user-home-title">
 My Teams and Leagues:
 </div>
-<div class="user-home-row">
 <% if @teams.empty? %>
 You are not in any leagues. <%= link_to "Create a League", new_league_path %> and invite your friends!
 <% end %>
 <% @teams.each do |team| %>
+<div class="user-home-row">
 <%= link_to team.name, league_team_path(team.league, team), :class => "user-home-row-team-name" %>
 <div class="user-home-row-team-record">
 <%= "(#{team.wins} - #{team.losses} - #{team.ties}) | #{team.standing}" %>

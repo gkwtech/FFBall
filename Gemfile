@@ -30,3 +30,4 @@ gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
 gem 'foundation-rails'
 gem 'rails_12factor'
+gem 'kaminari'

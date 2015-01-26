@@ -5,6 +5,7 @@ class CreateRosters < ActiveRecord::Migration
       t.integer :team_id, null: false
       t.string :status, null: false
       t.string :position
+      t.integer :lineup_id
 
       t.timestamps null: false
     end

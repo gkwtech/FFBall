@@ -24,6 +24,7 @@ class LeaguesController < ApplicationController
   def show
     @league = League.find(params[:id])
     @teams = @league.teams
+    @team = current_user.teams.where(league_id: @league.id).first
   end
 
   private

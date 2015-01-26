@@ -63,7 +63,7 @@
     $( ".draft-header-teams" ).mouseenter(
       function() {
         var value = $(this).attr("value");
-        $(".draft-header-teams-dropdown[value=" + value + "]").css("display", "block");
+        $(".draft-header-teams-dropdown[value=" + value + "]").css("display", "flex");
       })
   })
   $(function() {
@@ -84,6 +84,7 @@
 
   <% i = 1 %>
   <% @teams.each do |team| %>
+  <div class="draft-team-container">
   <div class="draft-header-teams" value="<%= team.id %>">
   <div class="draft-header-teams-position">
   <%= i %>
@@ -109,6 +110,7 @@
       </div>
     </div>
   <% end %>
+</div>
 </div>
 
   <% end %>

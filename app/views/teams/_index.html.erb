@@ -2,14 +2,19 @@
 <div class="league-team-list-title">
 Standings:
 </div>
-<% i = 1 %>
 <% if @teams %>
 <% @teams.each do |team| %>
-<div class="league-team-list-row">
-<%= i %>.
-<%= team.name %>
-<% i += 1 %>
+<a href="/leagues/<%= team.league_id %>/teams/<%= team.id %>" class="league-team-list-row">
+<div class="league-team-list-row-standing">
+<%= team.standing %>
 </div>
+<div class="league-team-list-row-name">
+<%= team.name %>
+</div>
+<div class="league-team-list-row-record">
+<%= "(#{team.wins} - #{team.losses} - #{team.ties})" %>
+</div>
+</a>
 <% end %>
 <% end %>
 <% if @teams.count < @league.member_amount.to_i %>

@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   get "teams/invite", :to => 'teams#invite'
   post "teams/join", :to => 'teams#join'
 
+  resources :lineups
+
   resources :players, only: [:show]
   resources :leagues, only: [:new, :create, :show] do
-    resources :teams, only: [:new, :create, :show, :index] do
+    resources :teams, only: [:new, :create, :show, :index, :update] do
       resources :rosters, only: [:new, :create, :show, :index, :update, :destroy]
       resources :players do
         post "/drop", to: 'players#drop', as: :drop

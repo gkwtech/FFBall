@@ -1,10 +1,23 @@
+<script>
+$(function() {
+  $( ".team-roster-row" ).sortable({
+    revert: true
+  });
+  $( ".team-roster-row" ).draggable({
+    connectToSortable: ".team-roster-row",
+    helper: "clone",
+    revert: "invalid"
+  });
+  $( "ul, li" ).disableSelection();
+});
+</script>
 <div class="league-name">
 <%= @league.name %>
 </div>
 <div class="league-navbar">
 <%= link_to "League Home", league_path(@league), class: "league-navbar-element" %>
-<a href="#" class="league-navbar-element">Free Agents</a>
-<a href="#" class="league-navbar-element">League History</a>
+<%= link_to "My Team", league_team_path(@league, @team), class: "league-navbar-element" %>
+<%= link_to "Free Agents", league_players_path(@league), class: "league-navbar-element" %>
 <a href="#" class="league-navbar-element">Schedule</a>
 <a href="#" class="league-navbar-element">League Settings</a>
 <a href="#" class="league-navbar-element">Team Settings</a>
@@ -14,32 +27,26 @@
 <%= @team.name %>
 </div>
 
-
 <div class="team-roster">
-  <% @lineup.each do |position, player| %>
+  <% @team_lineup.each do |roster| %>
   <div class="team-roster-row">
-  <div class="team-roster-position">
-  <%= position.to_s %>
-  </div>
-  <div class="team-roster-player">
-  <% if player.is_a?(String) %>
-  <%= player %>
-  <% else %>
-  <div class="team-roster-player-name">
-  <%= "#{player.first_name} #{player.last_name}" %>
-  </div>
-  <div class="team-roster-player-form">
-  <%= form_for [@league, @team, @roster] do |f| %>
-    <%= f.label :position %>
-    <%= f.select(:position, %w[QB RB WR TE FLEX DEF BN]) %>
+    <% player = Player.find(roster.player_id) %>
+    <% if roster.position.start_with? "BN" %>
+    <% second_position = player.position %>
+    <% else %>
+    <% second_position = "BN" %>
+    <% end %>
+    <%= form_for roster, url: league_team_roster_path(@league, @team, roster) do |f| %>
+    <%= f.select(:position, [roster.position, second_position]) %>
     <%= hidden_field_tag "team_id", @team.id %>
-    <%= hidden_field_tag "player_id", player.id %>
-    <%= f.submit "Save Lineup" %>
-  <% end %>
+    <%= hidden_field_tag "player_id", roster.player_id %>
+    <%= hidden_field_tag "roster_id", roster.id %>
+    <%= f.submit "Update", :class => "lineup-save" %>
+    <% end %>
+  <div class="team-roster-player-name">
+  <%= "#{Player.find(roster.player_id).first_name} #{Player.find(roster.player_id).last_name}" %>
   </div>
-  <% end %>
-  </div>
-  <%= button_to "Drop Player", league_team_player_drop_path(@league, @team, player) %>
+  <%= link_to "Drop Player", league_team_player_drop_path(@league, @team, player), :class => "drop-player-button" %>
   </div>
   <% end %>
 </div>

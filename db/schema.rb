@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121233646) do
+ActiveRecord::Schema.define(version: 20150125062323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "drafts", force: :cascade do |t|
-    t.datetime "year"
+    t.integer  "year"
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(version: 20150121233646) do
     t.datetime "updated_at",                   null: false
     t.integer  "commissioner_id",              null: false
     t.string   "member_amount",                null: false
+  end
+
+  create_table "lineups", force: :cascade do |t|
+    t.integer  "team_id",    null: false
+    t.string   "week"
+    t.string   "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "picks", force: :cascade do |t|
@@ -63,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150121233646) do
     t.integer  "team_id",    null: false
     t.string   "status",     null: false
     t.string   "position"
+    t.integer  "lineup_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
