@@ -29,7 +29,15 @@ class RostersController < ApplicationController
   end
 
   def destroy
-    binding.pry
+    roster = Roster.find(params[:id])
+    @league = League.find(params[:league_id])
+    @team = Team.find(params[:team_id])
+    if roster.delete
+      flash[:notice] = "Player Dropped."
+    else
+      flash[:notice] = "Uh-oh. Something is wrong. Leave feedback or come back later."
+    end
+    redirect_to league_team_path(@league, @team)
   end
 
   def update
@@ -37,6 +45,7 @@ class RostersController < ApplicationController
     @league = League.find(params[:league_id])
     @team = Team.find(params[:team_id])
     if roster.update(position: params[:roster][:position])
+      flash[:notice] = "Lineup saved successfully."
       redirect_to league_team_path(@league, @team)
     else
       flash[:notice] = "Uh-oh. Something is wrong. Leave feedback or come back later."

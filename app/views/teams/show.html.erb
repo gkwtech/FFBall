@@ -46,7 +46,7 @@ $(function() {
   <div class="team-roster-player-name">
   <%= "#{Player.find(roster.player_id).first_name} #{Player.find(roster.player_id).last_name}" %>
   </div>
-  <%= link_to "Drop Player", league_team_player_drop_path(@league, @team, player), :class => "drop-player-button" %>
+  <%= link_to "Drop Player", league_team_roster_path(@league, @team, roster), method: :delete, :class => "drop-player-button", data: { confirm: 'Are you certain you want to delete this?' } %>
   </div>
   <% end %>
 </div>
