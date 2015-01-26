@@ -25,9 +25,23 @@ FactoryGirl.define do
   end
 
   factory :roster do
-    player
     team
-    status "inactive"
+    status "active"
+    before(:create) do |roster|
+      player = create(:player)
+      roster.player_id = player.id
+      roster.position = player.position
+    end
+  end
+
+  factory :league do
+    password "password"
+    name "name"
+    member_amount 8
+    before(:create) do |league|
+      user = create(:user)
+      league.commissioner_id = user.id
+    end
   end
 
 end

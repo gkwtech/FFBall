@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :teams
-  has_many :leagues, through: :teams
+  has_many :leagues, through: :teams, foreign_key: "commissioner_id"
 
   def has_team_in(league)
     league.teams.each do |team|
