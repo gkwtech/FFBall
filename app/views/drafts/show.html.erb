@@ -152,6 +152,7 @@
       N O M I N A T E
     </div>
     <%= form_for [@league, @draft, @pick] do |f| %>
+    <input type="hidden" class="hidden-player-id" name="player_id">
     <%= f.label :price, "Price: $", :class => "price-label" %>
     <%= f.text_field :price, :class => "price-input" %>
     <%= hidden_field_tag "round_id", "#{@round.id}" %>
@@ -168,7 +169,6 @@
       <%= hidden_field_tag "team_order[#{i}]", "#{team.id}" %>
       <% i += 1 %>
     <% end %>
-    <input type="hidden" class="hidden-player-id" name="player_id">
     <%= f.submit "Sold", :class => "price-submit" %>
     <% end %>
 
