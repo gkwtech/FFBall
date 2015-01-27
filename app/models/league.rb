@@ -11,7 +11,7 @@ class League < ActiveRecord::Base
       return false
     else
       self.drafts.each do |draft|
-        if draft.year.to_i == Time.now.year
+        if draft.created_at.year == Time.now.year && draft.picks.count == (self.member_amount * self.max_players)
           return true
         end
       end
