@@ -168,6 +168,7 @@
       <%= hidden_field_tag "team_order[#{i}]", "#{team.id}" %>
       <% i += 1 %>
     <% end %>
+    <input type="hidden" class="hidden-player-id" name="player_id">
     <%= f.submit "Sold", :class => "price-submit" %>
     <% end %>
 
