@@ -3,6 +3,7 @@ class Draft < ActiveRecord::Base
   has_many :teams
   has_many :players
   belongs_to :league
+  has_many :picks, through: :rounds
 
   validates :league_id, presence: true
 
