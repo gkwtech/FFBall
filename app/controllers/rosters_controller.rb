@@ -2,7 +2,6 @@ class RostersController < ApplicationController
   before_action :authenticate
 
   def create
-    binding.pry
     roster = Roster.new()
     if params[:roster]
       roster.position = params[:roster][:position]
@@ -54,7 +53,6 @@ class RostersController < ApplicationController
   end
 
   def new
-    binding.pry
     # @league = League.find(params[:league_id])
     # @team = Team.find(params[:team_id])
     # @roster = Roster.new(team_id: @team.id, player_id: params[:player_id], status: "member", position: "BN")

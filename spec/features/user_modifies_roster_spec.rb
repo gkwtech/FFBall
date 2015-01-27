@@ -48,4 +48,29 @@ feature "user modifies roster" do
     expect(page).to have_content("Player Dropped.")
     expect(roster.team.players.count).to eq(initial_players_count - 1)
   end
+
+  scenario "by adding a free agent" do
+    draft = FactoryGirl.create(:draft)
+    players = FactoryGirl.create_list(:player, 1000)
+    teams = {}
+    users = {}
+    names = %w(a b c d e f g)
+    names.each do |name|
+      users[name] = FactoryGirl.create(:user)
+      teams[name] = Team.create(name: name, league_id: draft.league.id, user_id: users[name].id)
+    end
+    draft.autorun
+    user = users["a"]
+
+    visit new_user_session_path
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    click_button "Log in"
+
+    visit league_players_path(draft.league)
+    initial_players_count = teams["a"].players.count
+    find(".submit-mask", :match => :first).click
+    expect(teams["a"].players.count).to eq(initial_players_count + 1)
+  end
+
 end
