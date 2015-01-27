@@ -137,13 +137,3 @@ until total_picks == 0
   total_picks -=1
   pick_number += 1
 end
-
-
-
-
-
-
-
-
-
-

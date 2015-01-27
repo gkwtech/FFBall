@@ -13,10 +13,12 @@ FactoryGirl.define do
     league
   end
 
+
+
   factory :player do
-    first_name "first"
+    sequence(:first_name) {|n| "#{n}first"}
     last_name "last"
-    position "QB"
+    sequence(:position) {|n| ["QB", "RB", "WR", "TE"].sample}
     gsis_id 1
     height 8
     weight 8
@@ -42,6 +44,10 @@ FactoryGirl.define do
       user = create(:user)
       league.commissioner_id = user.id
     end
+  end
+
+  factory :draft do
+    league
   end
 
 end
